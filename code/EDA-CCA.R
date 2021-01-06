@@ -40,13 +40,6 @@ th<- ggplot(dfThink, aes(x="", y=list, fill=항목))+
 th
 
 
-par(mfrow=c(1,1))
-for( i in (1:52)){
-  qqnorm(data_int[,i] , main=colnames(data_int)[i])
-  qqline(data_int[,i] , col = 2)
-}
-
-
 count <- 0
 data_int<-subset(data , select = -c(q96,q112,q158,sex))
 #리커트 척도 특성상 통계적으로 정규성 검정하기 어려움
