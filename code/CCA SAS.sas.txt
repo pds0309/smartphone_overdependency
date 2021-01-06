@@ -1,0 +1,13 @@
+INFILE '/folders/myfolders/sasuser.v94/finaldata5.csv' DSD FIRSTOBS=2;
+INPUT x1-x17 q47-q51 q61-q70 q91 q96 q112 q115 q118 q119 q142-q158 sex;
+with1 = (q61 + q62 + q63 + q64 +q65)/5;
+with2 = (q68 + q69 + q70)/3;
+XX = (x6 + x7 + x8 + x10  )/4;
+RUN;
+proc standard data = alldata mean=0 std=1 out = alldata2;
+var x1-x17 q47-q51 q61-q70 q91 q96 q112 q115 q118 q119 q142-q158 with1 with2 XX;
+run;
+proc cancorr data = alldata2 simple c red;
+var  XX q51 q115 q118 q119 q151 q157;
+with q91 with1 with2;
+run;
